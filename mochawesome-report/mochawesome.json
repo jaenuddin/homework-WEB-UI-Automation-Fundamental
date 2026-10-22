@@ -1,0 +1,250 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-10-22T14:23:16.636Z",
+    "end": "2026-10-22T14:23:41.421Z",
+    "duration": 24785,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "39e0cc3a-b825-431f-a7be-b7264a9975ad",
+      "title": "",
+      "fullFile": "C:\\Users\\LENOVO\\Documents\\homework-WEB-UI-Automation-Fundamental\\login.spec.js",
+      "file": "\\login.spec.js",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook in \"{root}\"",
+          "fullTitle": "\"before all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 0,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });",
+          "err": {},
+          "uuid": "d8835aba-7486-4e5f-b340-3d064950d96a",
+          "parentUUID": "39e0cc3a-b825-431f-a7be-b7264a9975ad",
+          "isHook": true,
+          "skipped": false
+        },
+        {
+          "title": "\"before each\" hook in \"{root}\"",
+          "fullTitle": "\"before each\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 3929,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "this.timeout(10000);\nconst options = new chrome.Options();\nif (process.env.HEADLESS !== 'false') {\n  options.addArguments('--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1440,1000');\n}\nif (process.env.CHROME_BIN) options.setChromeBinaryPath(process.env.CHROME_BIN);\ndriver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();\nawait driver.manage().setTimeouts({ implicit: 0, pageLoad: 30000, script: 10000 });\nawait driver.get(BASE_URL);\nawait driver.wait(until.elementLocated(By.css('[data-testid=\"username-input\"]')), 15000);",
+          "err": {},
+          "uuid": "e3a96e12-b020-4acd-ac91-6b7294a284a1",
+          "parentUUID": "39e0cc3a-b825-431f-a7be-b7264a9975ad",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook in \"{root}\"",
+          "fullTitle": "\"after all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 0,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "// Reports and failure screenshots are retained for review after the test run.",
+          "err": {},
+          "uuid": "2578e902-9f4f-4a02-a429-7ab4bde84e4d",
+          "parentUUID": "39e0cc3a-b825-431f-a7be-b7264a9975ad",
+          "isHook": true,
+          "skipped": false
+        },
+        {
+          "title": "\"after each\" hook in \"{root}\"",
+          "fullTitle": "\"after each\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 971,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "try {\n  if (this.currentTest?.state === 'failed' && driver) {\n    const safeTitle = this.currentTest.title.replace(/[^a-z0-9_-]/gi, '_');\n    const screenshot = await driver.takeScreenshot();\n    fs.writeFileSync(path.join(SCREENSHOT_DIR, `${safeTitle}.png`), screenshot, 'base64');\n  }\n} finally {\n  if (driver) {\n    await driver.quit();\n    driver = undefined;\n  }\n}",
+          "err": {},
+          "uuid": "ca70a740-726f-4a0b-a8e5-01ae5084d460",
+          "parentUUID": "39e0cc3a-b825-431f-a7be-b7264a9975ad",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5039f5d1-761e-4d97-944f-07e6c68db1ae",
+          "title": "Login page",
+          "fullFile": "C:\\Users\\LENOVO\\Documents\\homework-WEB-UI-Automation-Fundamental\\login.spec.js",
+          "file": "\\login.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "menampilkan form login dan kontrol utama",
+              "fullTitle": "Login page menampilkan form login dan kontrol utama",
+              "timedOut": false,
+              "duration": 90,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const title = await driver.getTitle();\nconst username = await driver.findElement(By.css('[data-testid=\"username-input\"]'));\nconst password = await driver.findElement(By.css('[data-testid=\"password-input\"]'));\nconst submit = await driver.findElement(By.css('[data-testid=\"login-button\"]'));\nif (!title.includes('User Management')) throw new Error(`Judul halaman tidak sesuai: ${title}`);\nif (!(await username.isDisplayed()) || !(await password.isDisplayed()) || !(await submit.isDisplayed())) {\n  throw new Error('Form login tidak tampil lengkap');\n}",
+              "err": {},
+              "uuid": "302758cc-5eea-481d-8d28-9e126802332b",
+              "parentUUID": "5039f5d1-761e-4d97-944f-07e6c68db1ae",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "menampilkan petunjuk kredensial demo saat Show Hint diklik",
+              "fullTitle": "Login page menampilkan petunjuk kredensial demo saat Show Hint diklik",
+              "timedOut": false,
+              "duration": 148,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.findElement(By.css('[data-testid=\"hint-button\"]')).click();\nawait driver.wait(until.elementLocated(By.id('hintUser')), 3000);\nconst hint = await driver.findElement(By.css('.hint')).getText();\nif (!hint.includes('Username: admin') || !hint.includes('Password: admin')) {\n  throw new Error(`Petunjuk demo tidak sesuai: ${hint}`);\n}",
+              "err": {},
+              "uuid": "9a9ada38-a77b-4e9a-8350-c424f8fe4334",
+              "parentUUID": "5039f5d1-761e-4d97-944f-07e6c68db1ae",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "menolak submit saat username dan password kosong (validasi browser)",
+              "fullTitle": "Login page menolak submit saat username dan password kosong (validasi browser)",
+              "timedOut": false,
+              "duration": 175,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const submit = await driver.findElement(By.css('[data-testid=\"login-button\"]'));\nawait submit.click();\nconst username = await driver.findElement(By.css('[data-testid=\"username-input\"]'));\nconst password = await driver.findElement(By.css('[data-testid=\"password-input\"]'));\nconst usernameValid = await driver.executeScript('return arguments[0].validity.valid', username);\nconst passwordValid = await driver.executeScript('return arguments[0].validity.valid', password);\nif (usernameValid || passwordValid) throw new Error('Form seharusnya menolak field wajib yang kosong');\nif (!((await driver.getCurrentUrl()).includes('/'))) throw new Error('URL berubah setelah submit kosong');",
+              "err": {},
+              "uuid": "05f9f1b4-1bca-4444-ac04-07c256d9a89c",
+              "parentUUID": "5039f5d1-761e-4d97-944f-07e6c68db1ae",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "menolak kredensial yang salah dan tetap berada di halaman login",
+              "fullTitle": "Login page menolak kredensial yang salah dan tetap berada di halaman login",
+              "timedOut": false,
+              "duration": 848,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await submitLogin(INVALID_USERNAME, INVALID_PASSWORD);\nconst toast = By.css('.Toastify__toast--error .Toastify__toast-body');\nawait driver.wait(async () => {\n  const elements = await driver.findElements(toast);\n  return elements.length > 0 && (await elements[0].getText()).trim().length > 0;\n}, 15000);\nconst toastText = await driver.findElement(toast).getText();\nif (!toastText.trim()) throw new Error('Pesan error login kosong');\nif (!new URL(await driver.getCurrentUrl()).pathname.endsWith('/')) {\n  throw new Error(`Login gagal tetapi berpindah ke ${await driver.getCurrentUrl()}`);\n}",
+              "err": {},
+              "uuid": "8a2b85f0-200e-4a01-b020-0be055eb0081",
+              "parentUUID": "5039f5d1-761e-4d97-944f-07e6c68db1ae",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "berhasil login dengan kredensial demo admin/admin",
+              "fullTitle": "Login page berhasil login dengan kredensial demo admin/admin",
+              "timedOut": false,
+              "duration": 720,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await submitLogin(USERNAME, PASSWORD);\nawait driver.wait(async () => {\n  const pathname = new URL(await driver.getCurrentUrl()).pathname;\n  return pathname === '/users' || pathname === '/users/';\n}, 15000);\nconst token = await driver.executeScript('return localStorage.getItem(\"token\")');\nif (!token) throw new Error('Login berhasil tanpa token tersimpan di localStorage');\nif (!new URL(await driver.getCurrentUrl()).pathname.startsWith('/users')) {\n  throw new Error('Tidak diarahkan ke halaman users setelah login');\n}",
+              "err": {},
+              "uuid": "504e616b-0fdd-4e65-88fb-2a7cd102ca4a",
+              "parentUUID": "5039f5d1-761e-4d97-944f-07e6c68db1ae",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "302758cc-5eea-481d-8d28-9e126802332b",
+            "9a9ada38-a77b-4e9a-8350-c424f8fe4334",
+            "05f9f1b4-1bca-4444-ac04-07c256d9a89c",
+            "8a2b85f0-200e-4a01-b020-0be055eb0081",
+            "504e616b-0fdd-4e65-88fb-2a7cd102ca4a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1981,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.8.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}
