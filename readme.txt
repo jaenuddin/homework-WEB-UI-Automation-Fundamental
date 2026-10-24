@@ -1,1 +1,0 @@
-saya maju terusss nih automation
